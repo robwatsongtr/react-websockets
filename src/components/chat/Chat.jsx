@@ -1,4 +1,13 @@
-import { Container, Divider, FormControl, Grid, IconButton, List, ListItem, ListItemText, Paper, TextField, Typography } from "@mui/material";
+import { Container,
+  Divider, 
+  FormControl, 
+  Grid, 
+  IconButton,
+  List,
+  ListItem, 
+  ListItemText, 
+  Paper, 
+  TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ChatMessageDto } from "../../model/ChatMessageDto";
@@ -81,33 +90,40 @@ export default function Chat(){
         <Container>
           <Paper elevation={5}>
             <Box p={3}>
+
               <Typography variant="h4" gutterBottom>
-                  Happy chatting!
+                Hello!
               </Typography>
               <Divider />
               <Grid container spacing={4} alignItems="center">
+
                 <Grid id="chat-window" xs={12} item>
                   <List id="chat-window-messages">
-                      {listChatMessages}
-                      <ListItem ref={scrollBottomRef}></ListItem>
+                    {listChatMessages}
+                    <ListItem ref={scrollBottomRef}></ListItem>
                   </List>
                 </Grid>
+
                 <Grid xs={2} item>
                   <FormControl fullWidth>
-                      <TextField onChange={handleUserChange}
-                          value={user}
-                          label="Nickname"
-                          variant="outlined"/>
+                    <TextField onChange={handleUserChange}
+                      value={user}
+                      label="Nickname"
+                      variant="outlined"
+                    />
                   </FormControl>
                 </Grid>
+
                 <Grid xs={9} item>
                   <FormControl fullWidth>
-                      <TextField onChange={handleMessageChange} onKeyDown={handleEnterKey}
-                          value={message}
-                          label="Type your message..."
-                          variant="outlined"/>
+                    <TextField onChange={handleMessageChange} onKeyDown={handleEnterKey}
+                      value={message}
+                      label="Type your message..."
+                      variant="outlined"
+                    />
                   </FormControl>
                 </Grid>
+
                 <Grid xs={1} item>
                   <IconButton onClick={sendMessage}
                       aria-label="send"
@@ -115,7 +131,9 @@ export default function Chat(){
                           <SendIcon />
                   </IconButton>
                 </Grid>   
+
               </Grid>
+
             </Box>
           </Paper>
         </Container>
