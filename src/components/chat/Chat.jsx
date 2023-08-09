@@ -14,6 +14,7 @@ import { ChatMessageDto } from "../../model/ChatMessageDto";
 import './Chat.css';
 import SendIcon from '@mui/icons-material/Send';
 
+
 export default function Chat(){
 
   const ENTER_KEY_CODE = 13;
@@ -80,8 +81,11 @@ export default function Chat(){
   };
 
   const listChatMessages = chatMessages.map( (chatMessageDto, index) => 
-    <ListItem key={index}>
-        <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`}/>
+    <ListItem key={index} className={chatMessageDto.user === 'Server' ? 'server-message' : ''} >
+        <ListItemText 
+          primary={`${chatMessageDto.user}: ${chatMessageDto.message}`}
+          style={{ textAlign: chatMessageDto.user === 'Server' ? 'right' : 'left' }}
+        />
     </ListItem>
   );
 

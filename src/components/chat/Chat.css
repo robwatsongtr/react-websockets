@@ -6,3 +6,8 @@
     height: 18rem;
     overflow: auto;
 }
+
+.server-message {
+    text-align: right;
+    padding-right: 10px; /* Add padding for better appearance */
+}
