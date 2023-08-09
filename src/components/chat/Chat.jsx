@@ -79,7 +79,7 @@ export default function Chat(){
     }
   };
 
-  const listChatMessages = chatMessages.map((chatMessageDto, index) => 
+  const listChatMessages = chatMessages.map( (chatMessageDto, index) => 
     <ListItem key={index}>
         <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`}/>
     </ListItem>

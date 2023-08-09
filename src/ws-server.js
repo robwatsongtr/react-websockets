@@ -13,12 +13,17 @@ wss.on('connection', (ws) => {
       try {
         const parsedMessage = JSON.parse(message)
         console.log('Received:', parsedMessage);
+
         // Broadcast the received message to all connected clients
         wss.clients.forEach( (client) => {
-          if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify(parsedMessage));
+          if ( client.readyState === WebSocket.OPEN ) {
+            client.send( JSON.stringify(parsedMessage) );
           }
         });
+
+        // Send a response text message to the same client
+        ws.send( JSON.stringify({ user: 'Server', message: 'Message received!' }) );
+
       } catch (error) {
         console.error('Error parsing message:', error)
       } 
