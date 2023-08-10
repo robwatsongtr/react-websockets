@@ -7,7 +7,9 @@ import { Container,
   ListItem, 
   ListItemText, 
   Paper, 
-  TextField, Typography } from "@mui/material";
+  TextField, 
+  Typography 
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ChatMessageDto } from "../../model/ChatMessageDto";
@@ -75,16 +77,17 @@ export default function Chat(){
     if(user && message) {
       console.log('Send!');
       const chatMessageDto = new ChatMessageDto(user, message);
+      console.log('Sending:', chatMessageDto);
       webSocket.current.send(JSON.stringify(chatMessageDto));
       setMessage('');
     }
   };
 
   const listChatMessages = chatMessages.map( (chatMessageDto, index) => 
-    <ListItem key={index} className={chatMessageDto.user === 'Server' ? 'server-message' : ''} >
+    <ListItem key={index} className={chatMessageDto.user === 'SimpleBot' ? 'server-message' : ''} >
         <ListItemText 
           primary={`${chatMessageDto.user}: ${chatMessageDto.message}`}
-          style={{ textAlign: chatMessageDto.user === 'Server' ? 'right' : 'left' }}
+          style={{ textAlign: chatMessageDto.user === 'SimpleBot' ? 'right' : 'left' }}
         />
     </ListItem>
   );

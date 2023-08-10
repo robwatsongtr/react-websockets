@@ -1,10 +1,12 @@
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
-
+const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
+
+const dummyData = JSON.parse(fs.readFileSync('dummyData.json', 'utf8'));
 
 wss.on('connection', (ws) => {
     console.log('WebSocket connected');
@@ -21,8 +23,14 @@ wss.on('connection', (ws) => {
           }
         });
 
+        console.log('dummyData.responses:', dummyData.responses);
+
+        const responseObj = dummyData.responses.find(item => item.message === message);
+        console.log('responseObj:', responseObj);
+        const response = responseObj ? responseObj.response : "Please try again.";
+
         // Send a response text message to the same client
-        ws.send( JSON.stringify({ user: 'Server', message: 'Message received!' }) );
+        ws.send( JSON.stringify( { user: 'SimpleBot', message: response } ));
 
       } catch (error) {
         console.error('Error parsing message:', error)
